@@ -6,7 +6,7 @@ import com.election.voting.president.service.VoteService;
 import com.election.voting.president.web.CandidateDto;
 import com.election.voting.president.web.RegionDto;
 import com.election.voting.president.web.VoteDto;
-import com.election.voting.president.web.VoteRequest;
+import com.election.voting.president.web.VoteRequestDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +69,7 @@ public class ElectionsController {
      */
     @PostMapping(value = "/vote")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerNewVote(@RequestBody @Validated VoteRequest voteRequest) {
+    public void registerNewVote(@RequestBody @Validated VoteRequestDto voteRequest) {
         logger.info("Registering new vote");
         voteService.createVote(voteRequest.getVoterSsn(), voteRequest.getCandidateNumber());
     }

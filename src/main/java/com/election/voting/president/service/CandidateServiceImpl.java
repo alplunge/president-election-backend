@@ -54,10 +54,7 @@ public class CandidateServiceImpl implements CandidateService {
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEachOrdered(entry -> sortedCandidates.put(entry.getKey(), entry.getValue()));
         List<Candidate> candidates = findWinningCandidates(sortedCandidates);
-        if (candidates.size() > 2) {
-            logger.error("More than two participants has been found with the same amount of votes");
-            throw new IllegalStateException("To many participants (" +candidates.size()+ ") have the same amount of votes. No clear winner.");
-        }
+        validateCandidates(candidates);
         return candidates;
     }
 
@@ -77,30 +74,30 @@ public class CandidateServiceImpl implements CandidateService {
         double secondHighestVotes = 0L;
         double totalVotes = getTotalVotes(candidates);
         double highestNumberOfVotes = getHighestNumberOfVotes(candidates);
-        List<Candidate> winners = new ArrayList<>();
+        List<Candidate> potentialWinners = new ArrayList<>();
 
         for (Map.Entry<Candidate, Long> entry : candidates.entrySet()) {
             double candidateVotes = entry.getValue();
             double voteShare = (candidateVotes / totalVotes) * 100;
 
             if (voteShare > 50.0f) {
-                winners.add(entry.getKey());
-                return winners;
+                potentialWinners.add(entry.getKey());
+                return potentialWinners;
             } else if (candidateVotes != highestNumberOfVotes && candidateVotes > secondHighestVotes) {
                 secondHighestVotes = candidateVotes;
-            } else if (winners.size() < 2) {
+            } else if (potentialWinners.size() < 2) {
                 if (candidateVotes == secondHighestVotes || candidateVotes < secondHighestVotes) {
                     secondHighestVotes = candidateVotes;
                 }
-            } else if (winners.size() == 2) {
+            } else if (potentialWinners.size() == 2) {
                 if (candidateVotes == highestNumberOfVotes || candidateVotes == secondHighestVotes) {
-                    winners.add(entry.getKey());
-                    return winners;
+                    potentialWinners.add(entry.getKey());
+                    return potentialWinners;
                 }
             }
-            winners.add(entry.getKey());
+            potentialWinners.add(entry.getKey());
         }
-        return winners;
+        return potentialWinners;
     }
 
     /**
@@ -127,6 +124,16 @@ public class CandidateServiceImpl implements CandidateService {
                 .stream()
                 .max(Comparator.naturalOrder())
                 .get();
+    }
+
+    /**
+     * Check how many candidates there are as potential winners
+     */
+    private void validateCandidates(List<Candidate> candidates) throws IllegalStateException {
+        if (candidates.size() > 2) {
+            logger.error("More than two participants has been found with the same amount of votes");
+            throw new IllegalStateException("To many participants (" +candidates.size()+ ") have the same amount of votes. No clear winner.");
+        }
     }
 
 }

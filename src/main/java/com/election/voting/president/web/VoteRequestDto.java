@@ -1,10 +1,14 @@
 package com.election.voting.president.web;
 
-public class VoteRequest {
+/**
+ * Data Transfer Object to register new vote.
+ *
+ */
+public class VoteRequestDto {
     private int candidateNumber;
     private int voterSsn;
 
-    protected VoteRequest() {
+    protected VoteRequestDto() {
     }
 
     public int getCandidateNumber() {
