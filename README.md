@@ -4,25 +4,19 @@ by Alminas Plunge
 # Requirements
 Design and implement a simplified President Election application back-end
 
-Explicit requirements:
-	1. The code must be written in Java language.
-	2. You may use any frameworks you need, but try to add as little dependencies as
-possible. If something can be done without additional dependencies then it should
-be done so.
-	3. There are no specific requirements for data storage. You can keep data in memory.
+# Explicit requirements:
+1. The code must be written in Java language.
+2. You may use any frameworks you need, but try to add as little dependencies as
+3. There are no specific requirements for data storage. You can keep data in memory.
 Be prepared to discuss alternatives.
-	4. All interaction with an application must be implemented via REST endpoints. Be
-prepared to discuss alternatives.
-	5. All interaction with an application must be implemented via REST endpoints. Be
-prepared to discuss alternatives.
-	6. All interaction with an application must be implemented via REST endpoints. Be
-prepared to discuss alternatives.
-	7. All interaction with an application must be implemented via REST endpoints. Be
-prepared to discuss alternatives.
+4. All interaction with an application must be implemented via REST endpoints. 
+5. REST API Requests/Responses have to be simple and easy to read/understand.
+6. Be mindful about naming and comments. Your code must be readable and clean.
+7. Your final delivery must be a Maven project.
 
 # Implementation details:
 
-I used spring boot framework to power API. It is easy to use and reasonble fast: https://spring.io/projects/spring-boot
+I used spring boot framework to power API. It is easy to use and reasonable fast: https://spring.io/projects/spring-boot
 
 ## User Stories:
 
@@ -202,10 +196,3 @@ Voter does not exist 234234
 ```json
 To many participants (3) have the same amount of votes. No clear winner.
 ``` 
-
-
-
-
-
-
-
