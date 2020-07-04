@@ -24,7 +24,7 @@ public class ElectionsServiceErrorAdvice {
      * @return  error ResponseEntity
      */
     @ExceptionHandler({NoSuchElementException.class})
-    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
+    public ResponseEntity<ErrorDto> handleNoSuchElementException(NoSuchElementException e) {
         return error(HttpStatus.NOT_FOUND, e);
     }
 
@@ -35,7 +35,7 @@ public class ElectionsServiceErrorAdvice {
      * @return  error ResponseEntity
      */
     @ExceptionHandler({IllegalArgumentException.class})
-    public ResponseEntity<String>  handleIllegalArgumentException(IllegalArgumentException e) {
+    public ResponseEntity<ErrorDto>  handleIllegalArgumentException(IllegalArgumentException e) {
         return error(HttpStatus.FORBIDDEN, e);
     }
 
@@ -46,7 +46,7 @@ public class ElectionsServiceErrorAdvice {
      * @return  error ResponseEntity
      */
     @ExceptionHandler({IllegalStateException.class})
-    public ResponseEntity<String>  handleIllegalArgumentException(IllegalStateException e) {
+    public ResponseEntity<ErrorDto>  handleIllegalArgumentException(IllegalStateException e) {
         return error(HttpStatus.NOT_FOUND, e);
     }
 
@@ -55,10 +55,10 @@ public class ElectionsServiceErrorAdvice {
      *
      * @param status HTTP status code on error
      * @param e exception
-     * @return ResponseEntity with HTPP status and exception message
+     * @return ResponseEntity with HTTP status and ErrorDto
      */
-    private ResponseEntity<String> error(HttpStatus status, Exception e) {
+    private ResponseEntity<ErrorDto> error(HttpStatus status, Exception e) {
         logger.error("Exception : ", e);
-        return ResponseEntity.status(status).body(e.getMessage());
+        return ResponseEntity.status(status).body(new ErrorDto(e.getMessage()));
     }
 }

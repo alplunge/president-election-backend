@@ -71,19 +71,25 @@ If a vote has already been cast by the voter, then error message will be returne
 - `401 Unauthorised` on trying to vote again
 
 ```json
-A vote has already been cast by the voter 122211
+{
+    "errorMessage": "A vote has already been cast by the voter 122211"
+}
 ```
 
 - `404 Not Found` if the candidate does not exist
 
 ```json
-Candidate does not exist 122
+{
+    "errorMessage": "Candidate does not exist 122"
+}
 ```
 
 - `404 Not Found` if the voter is not registered
 
 ```json
-Voter does not exist 234234
+{
+    "errorMessage": "Voter does not exist 234234"
+}
 ```
 
 ## Lookup of overall distribution of votes amongst candidates
@@ -194,5 +200,7 @@ Voter does not exist 234234
 - `404 Not Found` when there are more than two candidates with the same votes
 
 ```json
-To many participants (3) have the same amount of votes. No clear winner.
+{
+    "errorMessage": "To many participants (3) have the same amount of votes. No clear winner."
+}
 ``` 
