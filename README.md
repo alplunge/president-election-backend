@@ -29,11 +29,14 @@ I used spring boot framework to power API. It is easy to use and reasonable fast
 
 ## API Usage
 
+### Base URL:
+/api/elections/
+
 ### List all candidates
 
 **Definition**
 
-`GET election/candidates`
+`GET /candidates`
 
 **Response**
 - `200  OK` on success
@@ -56,7 +59,7 @@ I used spring boot framework to power API. It is easy to use and reasonable fast
 ### Register a new vote
 
 **Definition**
-`POST election/votes`
+`POST /votes`
 
 **Arguments**
 
@@ -95,7 +98,7 @@ If a vote has already been cast by the voter, then error message will be returne
 ## Lookup of overall distribution of votes amongst candidates
 
 **Definition**
-`GET election/votes`
+`GET /votes`
 
 **Response**
 
@@ -125,7 +128,7 @@ If a vote has already been cast by the voter, then error message will be returne
 ## Lookup of voting result distribution amongst different regions
 
 **Definition**
-`GET election/regions`
+`GET /regions`
 
 **Response**
 
@@ -165,7 +168,7 @@ If a vote has already been cast by the voter, then error message will be returne
 ## Return a winner cadidate
 
 **Definition**
-`GET election/winner`
+`GET /winner`
 
 **Response**
 
